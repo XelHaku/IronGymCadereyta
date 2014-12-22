@@ -1,0 +1,564 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>IronGym App</title>
+<link rel="stylesheet" type="text/css" href="Includes/style1.css">
+<link href="jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="weight_tracker_javascript.js"></script>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<!-- Spiner library -->
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/spinbox/latest/jqm-spinbox.min.js"></script>
+<!-- -->
+</head> 
+<body> 
+
+<div data-role="page" id="IronMain">
+	<div align="center" id="TopMain" data-role="header">
+    <script type="text/javascript">
+       document.write('<img  id="imageLogoMain"  src="Images/IrongymPics/iglogo_wbg.png"  width="'+$(window).width()*0.75+'" height="auto" >');
+      </script>
+		
+	</div>
+	<div data-role="content">
+	  <div class="ui-grid-a">
+	    <div class="ui-block-a">
+        <a href="#WeightTracker">
+            <img src="Images/IrongymPics/scaleicon.png" width="128em" height="128">
+            <h6>WeightTracker</h6></a>
+        </div>
+	    <div class="ui-block-b">
+        <a href="#MeasurementRecord">
+            <img src="Images/IrongymPics/scaleicon.png" width="128" height="128">
+           <h6> Measurement Record</h6>  </a>
+        </div>
+	    <div class="ui-block-a">
+        <a href="#Supplements">
+            <img src="Images/IrongymPics/proteicon.png" width="128" height="128">
+            Suplementos</a>
+        
+        </div>
+	    <div class="ui-block-b">
+        <a href="#Wifi">
+            <img src="Images/IrongymPics/wifi74icon.png" width="128" height="128">
+            <h6>Wifi</h6></a>
+        </div>
+	    <div class="ui-block-a">
+        <a href="#Contact">
+            <img src="Images/IrongymPics/email15.png" width="128" height="128">
+            Contacto</a>
+        </div>
+	    <div class="ui-block-b">
+        <a href="#Facebook">
+            <img src="Images/IrongymPics/facebook1.png" width="128" height="128">
+            Facebook</a>
+        </div>
+      </div>	
+    
+	</div>
+    
+	<div data-role="footer">
+		<h4><!----></h4>
+	</div>
+</div>
+
+<!--
+
+WEIGHT TRACKER PAGE
+
+-->
+<div data-role="page" id="WeightTracker">
+	<div data-role="header">
+		<h1>Weigth Tracker</h1>	</div>
+
+    <div data-role="content">
+<div>
+    <form a >
+		  <label    for="spin4">Peso Kg</label>
+			<input maxlength="3" width="0.1em"  onBlur="bmicalc();" onFocus="bmicalc();" onChange="bmicalc();"
+             type="number" data-mini="true" data-role="spinbox" name="spin4" id="weight_text" data-options='{"type":"vertical"}' value="75" max="300" min="10" />
+		<br/>
+			<label for="spin4">Estatura cm</label>
+			<input maxlength="3" onBlur="bmicalc();" onFocus="bmicalc();" onChange="bmicalc();"
+            type="number" data-mini="true" data-role="spinbox" name="spin4" id="height_text" data-options='{"type":"vertical"}' value="" max="300" min="10" />
+		<br/>
+        	<label for="spin4">Grasa Corporal %</label>
+			<input onKeyPress="bodyfatview();" onChange="bodyfatview();" onFocus="bodyfatview();" maxlength="4"  type="number" data-mini="true" data-role="spinbox" name="spin4" id="bodyfat_text" data-options='{"type":"vertical"}' value="" max="50" min="0" />
+
+ 
+  </form>
+       
+        
+        
+</br>
+ <div style="color:#FFFFFF;background-color:#333">       
+<h2 align="center"   id="imc_text"></h2>
+</div> 
+</div>
+
+
+<div align="center" data-role="controlgroup" data-type="horizontal">
+<a href="#" onClick="SaveDataToLocalStorage();" data-role="button">Guardar</a>
+<a href="#recordlogPage" data-role="button">Progreso</a>
+<a href="#" onClick="EliminateLocalStorage();" data-role="button">Borrar Progreso</a>
+</div> <!--Buttons-->
+
+
+<div data-role="collapsible-set">
+  <div  data-role="collapsible">
+    <h3 align="center"><img id="female_icon" height="60" width="auto" src="Images/female.png" width="80" height="160"></h3>
+
+ <table bgcolor="#333333" width="auto" align="center"  border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <th scope="col">Edad </th>
+    <th scope="col">Bajo <span style="font-size:0.6em"><br/>IMC < 18.1</span></th>
+    <th scope="col">Normal <span style="font-size:0.6em"><br/>IMC 18.5 - 24.9</span></th>
+    <th scope="col">Alto <span style="font-size:0.6em"><br/>IMC 25 - 29.9</span></th>
+    <th scope="col">Muy Alto <span style="font-size:0.6em"><br/>IMC > 30 </span></th>
+  </tr>
+  <tr>
+    <th align="center" scope="row">20-39</th>
+    <td align="center"> < 21 </td>
+    <td align="center">21.0 - 32.9</td>
+    <td align="center">33.0 - 38.9</td>
+    <td align="center">>39</td>
+  </tr>
+  <tr>
+    <th align="center" scope="row">40-59</th>
+    <td align="center"> < 23 </td>
+    <td align="center">23.0 - 33.9</td>
+    <td align="center">34.0 - 39.9</td>
+    <td align="center">>40</td>
+  </tr>
+  <tr>
+   <th align="center" scope="row">60-79</th>
+    <td align="center"> < 24 </td>
+    <td align="center">24.0 - 35.9</td>
+    <td align="center">36.0 - 41.9</td>
+    <td align="center">>42</td>
+  </tr>
+</table>
+<h5 style="color:#333" align="center"><span style="font-size:0.8em">Rangos recomendados de indice de masa corpora(IMC) y grasa corporal</span></h5>
+  </div>
+  <div data-role="collapsible" data-collapsed="true">
+    <h3 align="center"><img id="male_icon" height="60" width="auto" src="Images/male.png" width="80" height="160"></h3>
+ 
+     <table bgcolor="#333333" width="auto" align="center"  border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <th scope="col">Edad </th>
+    <th scope="col">Bajo <span style="font-size:0.6em"><br/>IMC < 18.1</span></th>
+    <th scope="col">Normal <span style="font-size:0.6em"><br/>IMC 18.5 - 24.9</span></th>
+    <th scope="col">Alto <span style="font-size:0.6em"><br/>IMC 25 - 29.9</span></th>
+    <th scope="col">Muy Alto <span style="font-size:0.6em"><br/>IMC > 30 </span></th>
+  </tr>
+  <tr>
+    <th align="center" scope="row">20-39</th>
+    <td align="center"> < 8 </td>
+    <td align="center">8.0 - 19.9</td>
+    <td align="center">20.0 - 24.9</td>
+    <td align="center">>30</td>
+  </tr>
+  <tr>
+    <th align="center" scope="row">40-59</th>
+    <td align="center"> < 11 </td>
+    <td align="center">11.0 - 21.9</td>
+    <td align="center">22.0 - 27.9</td>
+    <td align="center">>28</td>
+  </tr>
+  <tr>
+   <th align="center" scope="row">60-79</th>
+    <td align="center"> < 13 </td>
+    <td align="center">13.0 - 24.9</td>
+    <td align="center">25.0 - 9.9</td>
+    <td align="center">>30</td>
+  </tr>
+</table>
+<h5 style="color:#333" align="center"><span style="font-size:0.8em">Rangos recomendados de indice de masa corpora(IMC) y grasa corporal</span></h5>
+
+  </div>
+
+</div>	<!--colapsible-->	
+      
+        
+        
+                		
+</div>
+
+<div data-role="footer"><h4><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4></div>
+</div>
+
+  
+  
+<!--
+
+RECORD LOG WEIGHT PAGE
+
+-->
+<div data-role="page" id="recordlogPage">
+  <div data-role="header">
+    <h1 id="headertest">Header</h1>
+  </div>
+  <div data-role="content">
+    <ul data-role="listview">
+    
+      <li><a href="#">
+      <script type="text/javascript">
+       document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
+      </script>
+	  <tr>
+      <th width="25%" scope="col" align="center">Peso Kg</th>
+      <th width="25%" scope="col" align="center">GC%</th>
+      <th width="25%" scope="col" align="center">IMC</th>
+      <th width="25%" scope="col" align="center">Fecha</th>
+      </tr>
+      </table>
+      </a></li>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+//     document.write('<li onClick="EraseSingleRecord(' + i + ');" ><a href="#">');
+	 // var a = JSON.parse(window.localStorage.getItem("ProgressLog"));
+	  var wRecArray = [];
+	  wRecArray = JSON.parse(window.localStorage.getItem("ProgressLog"));
+	
+	 for(i=0;i<wRecArray.length; i++)
+	 {
+var name = "item" + String(i);
+document.write('<li id="'+name+'"><a onClick="DeletePopupDialog(i);">');
+
+ 
+		  
+
+		
+		 //calculate IMC
+		document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
+    var imctext = 10000*parseFloat(wRecArray[i].weight)/(parseFloat(wRecArray[i].height)*parseFloat(wRecArray[i].height));
+	imctext=imctext.toFixed(2);
+	document.write('<tr>');
+	
+	
+	//compare and set color for WEIGHT 
+	if(i==0){
+		
+		
+	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
+	
+	}
+	else{
+		var compare = wRecArray[i-1].weight-wRecArray[i].weight;
+		if(compare!=0){
+				if (compare >= 0)	
+				{
+				document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].weight +'</span></th>');
+						}else{
+				document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].weight +'</span></th>');				
+				}
+		}else{
+		document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
+		}
+		
+	}
+	
+	
+	//compare and set color for BODYFAT  
+	  if(i==0){
+	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
+	
+	}
+	else{
+		var compare = wRecArray[i-1].bodyfat-wRecArray[i].bodyfat;
+		if(compare!=0){
+				if (compare >= 0)	
+				{
+				document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].bodyfat +'</span></th>');
+						}else{
+				document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].bodyfat +'</span></th>');				
+				}
+		}else{
+		document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
+		}
+	}
+	
+		//PRINT IMC
+	  document.write('<th width="25%" scope="col" align="center">'+  imctext +'</th>');
+	
+	 
+	  //document.write('<th width="25%" scope="col" align="center">'+  wRecArray[i].bodyfat +'</th>');
+	  document.write('<th width="25%" scope="col" align="center">'+ wRecArray[i].day+"/"+wRecArray[i].month+"/"+wRecArray[i].year +'</th>');
+	document.write('</tr>');  
+	 document.write('</table>');
+	 
+	 
+	  document.write('</a></li>');
+	 }
+	 
+	 
+      </script>
+    
+    </ul>
+     
+ 
+    
+
+
+  
+  </div>
+  
+  </div>
+<div data-role="footer"><h4><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+</div>    
+
+</div>
+
+<!--
+
+MEASUREMENT RECORD PAGE
+
+-->		 
+
+<div data-role="page" id="MeasurementRecord">
+  <div data-role="header">
+    <h1>Header</h1>
+  </div>
+  <div data-role="content">Content</div>
+  <div data-role="footer">
+    <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
+
+<!--
+
+WIFI PAGE
+
+-->
+<div data-role="page" id="Wifi">
+  <div data-role="header">
+    <h1>Wifi</h1>
+  </div>
+  <div data-role="content">
+  <h3>SSDI=IRONGYM</h3>
+  <h3>Password</h3>
+  <h2 style="color:blue">noexcuses</h2>
+  
+  </div>
+  <div data-role="footer">
+     <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
+
+<!--
+
+CONTACT PAGE
+
+-->
+<div data-role="page" id="Contact">
+      <div data-role="header">
+        <h1>Contactanos</h1>
+  </div>
+      <div data-role="content">
+      <h2>Horario</h2>
+        <h3>Lunes a Viernes</h3>
+        <h4>6am a 10:30pm</h4>     
+         <h3>Sabado</h3>
+        <h4>8am a 6pm</h4></b></b>
+      <h2>Email</h2>
+     <h3 style="color:blue"> <a href="mailto:irongym.tc@gmail.com">irongym.tc@gmail.com</a></h3>
+      <h2>Direccion</h2>
+      <h3><a href="https://www.google.com.mx/maps/place/Gonzalitos+205,+Centro+de+Cadereyta,+67450+Cadereyta+Jim%C3%A9nez,+NL/@25.5892688,-100.0000312,17z/data=!3m1!4b1!4m2!3m1!1s0x8662dbe50461d645:0xc679308a74b69de3">
+      Gonzalitos 205, Centro de Cadereyta, Cadereyta Jiménez, NL</a></h3>
+      
+      </div>
+      <div data-role="footer">
+        <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+      </div>
+</div>
+    
+    <!--
+
+SUPPLEMENTS PAGE
+
+-->
+    
+<div data-role="page" id="Supplements">
+  <div data-role="header">
+    <h1>Supplementos</h1>
+  </div>
+  <div data-role="content">
+    <ul data-role="listview">
+      <li><a href="#proteinlist">
+        <h3>Proteina</h3>
+        <p>Whey protein</p>
+      </a></li>
+      <li><a href="#fatburnerlist">
+        <h3>Quemadores</h3>
+        <p>Fat Burners</p>
+      </a></li>
+    </ul>
+  
+  
+  </div>
+  <div data-role="footer">
+   <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
+
+    <!--
+
+SUPPLEMENTS PROTEIN LIST PAGE 
+
+-->
+<div data-role="page" id="proteinlist">
+      <div data-role="header">
+      <a href="#Supplements" data-role="button" data-icon="back" data-iconpos="notext">Button</a>
+        <h1>Proteinas</h1>
+      </div>
+      <div data-role="content">
+        <ul data-role="listview">
+          <li><a href="#">
+          <img src="Images/Supplements/ic_arnoldwhey.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_cutlerprotein.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+           </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_goldwheyprotein.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_isoburnwhey.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_isopure7lb.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_isopurezero.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_musclemilk.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_oxyeliteprotein.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_peakmuscle.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+          <li><a href="#">
+          <img src="Images/Supplements/ic_platinumhydrowhey.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+             <li><a href="#">
+          <img src="Images/Supplements/ic_ultrawhey24.png" width="200" height="200">
+            <h3>Page</h3>
+            <p>Lorem ipsum</p>
+            </a></li>
+        </ul>
+      
+      
+      
+      </div>
+      <div data-role="footer">
+        <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+      </div>
+</div>
+<!--
+
+SUPPLEMENTS PROTEIN LIST PAGE 
+
+-->
+<div data-role="page" id="fatburnerlist">
+  <div data-role="header">
+  <a href="#Supplements" data-role="button" data-icon="back" data-iconpos="notext">Button</a>
+    <h1>Quemadores</h1>
+  </div>
+  <div data-role="content">
+    <ul data-role="listview">
+      <li><a href="#">
+        <img src="Images/Supplements/ic_abfx.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+      <li><a href="#">
+        <img src="Images/Supplements/ic_abfxpink.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+      <li><a href="#">
+        <img src="Images/Supplements/ic_blackwidow.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+      <li><a href="#">
+        <img src="Images/Supplements/ic_dymaburnxtreme.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+      <li><a href="#">
+        <img src="Images/Supplements/ic_lipo6black.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+      <li><a href="#">
+        <img src="Images/Supplements/ic_lipo6blackfemale.png" width="200" height="200">
+        <h3>Page</h3>
+        <p>Lorem ipsum</p>
+      </a></li>
+    </ul>
+  
+  
+  
+  </div>
+  <div data-role="footer">
+   <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
+<!--
+
+FACEBOOK PAGE
+
+-->
+
+<div data-role="page" id="Facebook">
+  <div data-role="header">
+    <h1>Header</h1>
+  </div>
+  <div data-role="content">Content</div>
+  <div data-role="footer">
+    <h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+</body>
+</html>

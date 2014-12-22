@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background-color:#036}
+
+div{
+color: #FFFFFF;
+	
+}
+
+#TopMain{color:#0F3}
+
+#imageLogoMain{
+align:center;	
+	}
+	
+	#height_text | #weight_text | #bodyfat_text{
+width:10em;
+		}
+		
+th{
+	font-size:0.75em;
+	}
+		
