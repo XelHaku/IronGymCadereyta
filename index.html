@@ -71,7 +71,7 @@ WEIGHT TRACKER PAGE
 -->
 <div data-role="page" id="WeightTracker">
 	<div data-role="header">
-		<h1>Weigth Tracker</h1>	</div>
+		<a href="#IronMain"  data-role="button" data-icon="custom" data-iconpos="right">Back</a> <h1>Weigth Tracker</h1>	</div>
 
     <div data-role="content">
 <div>
@@ -85,11 +85,15 @@ WEIGHT TRACKER PAGE
             type="number" data-mini="true" data-role="spinbox" name="spin4" id="height_text" data-options='{"type":"vertical"}' value="" max="300" min="10" />
 		<br/>
         	<label for="spin4">Grasa Corporal %</label>
-			<input onKeyPress="bodyfatview();" onChange="bodyfatview();" onFocus="bodyfatview();" maxlength="4"  type="number" data-mini="true" data-role="spinbox" name="spin4" id="bodyfat_text" data-options='{"type":"vertical"}' value="" max="50" min="0" />
+             <script type="text/javascript">
+             
+            document.write('<a href=\"#bodyfatinstructions \"><img width=\"'+ $(window).width()*.04+'" height=\"auto\" src=\"Images/infoicon2.png\" width=\"129\" height=\"129\"></img></a>')
+        	</script>
+<input onKeyPress="bodyfatview();" onChange="bodyfatview();" onFocus="bodyfatview();" maxlength="4"  type="number" data-mini="true" data-role="spinbox" name="spin4" id="bodyfat_text" data-options='{"type":"vertical"}' value="" max="50" min="0" />
 
  
   </form>
-       
+    
         
         
 </br>
@@ -99,10 +103,10 @@ WEIGHT TRACKER PAGE
 </div>
 
 
-<div align="center" data-role="controlgroup" data-type="horizontal">
-<a href="#" onClick="SaveDataToLocalStorage();" data-role="button">Guardar</a>
-<a href="#recordlogPage" data-role="button">Progreso</a>
-<a href="#" onClick="EliminateLocalStorage();" data-role="button">Borrar Progreso</a>
+<div  align="center" data-role="controlgroup" data-type="horizontal">
+<a  href="#" onClick="SaveDataToLocalStorage();" data-role="button"><span style="font-size:0.75em">Guardar</span></a>
+<a href="#recordlogPage" data-role="button"><span style="font-size:0.75em">Progreso</span></a>
+<a href="#" onClick="EliminateLocalStorage();" data-role="button"><span style="font-size:0.72em">Borrar Progreso</span></a>
 </div> <!--Buttons-->
 
 
@@ -186,7 +190,7 @@ WEIGHT TRACKER PAGE
                 		
 </div>
 
-<div data-role="footer"><h4><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4></div>
+<div data-role="footer"><h4><a href="#IronMain" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4></div>
 </div>
 
   
@@ -198,7 +202,7 @@ RECORD LOG WEIGHT PAGE
 -->
 <div data-role="page" id="recordlogPage">
   <div data-role="header">
-    <h1 id="headertest">Header</h1>
+  <a href="#WeightTracker"  data-role="button" data-icon="custom" data-iconpos="right">Back</a>  <h1 id="headertest">  Header</h1>
   </div>
   <div data-role="content">
     <ul data-role="listview">
@@ -217,28 +221,24 @@ RECORD LOG WEIGHT PAGE
       </a></li>
 
 
-
-
-
-
-
     <script type="text/javascript">
+	
 //     document.write('<li onClick="EraseSingleRecord(' + i + ');" ><a href="#">');
 	 // var a = JSON.parse(window.localStorage.getItem("ProgressLog"));
+	  
 	  var wRecArray = [];
+	  
+	  if ( "ProgressLog" in window.localStorage) {
+		  
 	  wRecArray = JSON.parse(window.localStorage.getItem("ProgressLog"));
 	
 	 for(i=0;i<wRecArray.length; i++)
 	 {
-var name = "item" + String(i);
-document.write('<li id="'+name+'"><a onClick="DeletePopupDialog(i);">');
-
- 
-		  
-
-		
-		 //calculate IMC
+		var name = "item" + String(i);
+		document.write('<li id="'+name+'"><a onClick="DeletePopupDialog('+i+');">');
 		document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
+		 
+		//calculate IMC
     var imctext = 10000*parseFloat(wRecArray[i].weight)/(parseFloat(wRecArray[i].height)*parseFloat(wRecArray[i].height));
 	imctext=imctext.toFixed(2);
 	document.write('<tr>');
@@ -256,12 +256,12 @@ document.write('<li id="'+name+'"><a onClick="DeletePopupDialog(i);">');
 		if(compare!=0){
 				if (compare >= 0)	
 				{
-				document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].weight +'</span></th>');
+	document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].weight +'</span></th>');
 						}else{
-				document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].weight +'</span></th>');				
+	document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].weight +'</span></th>');				
 				}
 		}else{
-		document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
+	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
 		}
 		
 	}
@@ -277,29 +277,30 @@ document.write('<li id="'+name+'"><a onClick="DeletePopupDialog(i);">');
 		if(compare!=0){
 				if (compare >= 0)	
 				{
-				document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].bodyfat +'</span></th>');
+	document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].bodyfat +'</span></th>');
 						}else{
-				document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].bodyfat +'</span></th>');				
+	document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].bodyfat +'</span></th>');				
 				}
 		}else{
-		document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
+	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
 		}
 	}
 	
 		//PRINT IMC
-	  document.write('<th width="25%" scope="col" align="center">'+  imctext +'</th>');
+	document.write('<th width="25%" scope="col" align="center">'+  imctext +'</th>');
 	
 	 
 	  //document.write('<th width="25%" scope="col" align="center">'+  wRecArray[i].bodyfat +'</th>');
-	  document.write('<th width="25%" scope="col" align="center">'+ wRecArray[i].day+"/"+wRecArray[i].month+"/"+wRecArray[i].year +'</th>');
+	document.write('<th width="25%" scope="col" align="center">'+ wRecArray[i].day+"/"+wRecArray[i].month+"/"+wRecArray[i].year +'     </th>');
+	
 	document.write('</tr>');  
-	 document.write('</table>');
-	 
-	 
-	  document.write('</a></li>');
+	document.write('</table>');
+	document.write('</li>');
+	
 	 }
+	  }else{alert("ERROR: No se pudo accesar a la memoria");}
 	 
-	 
+	  
       </script>
     
     </ul>
@@ -552,7 +553,31 @@ FACEBOOK PAGE
   </div>
 </div>
 
+<!--
 
+OMNICRON INSTRUCTIONS
+
+-->
+<div data-role="page" id="bodyfatinstructions">
+  <div data-role="header">
+    <h1><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a>Instrucciones para usar Omrion</h1>
+  </div>
+  <div data-role="content">
+  <ol>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  
+  </ol>
+  </div>
+  <div data-role="footer">
+    <h4><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a></h4>
+  </div>
+</div>
 
 
 
