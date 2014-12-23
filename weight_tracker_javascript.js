@@ -124,6 +124,11 @@ function EliminateLocalStorage(){
 		window.localStorage.setItem('ProgressLog', JSON.stringify(wRecArray));
 		window.location.reload(true);
 	}
+
+	function refreshPage(){
+window.location.reload(true);
+
+	}
 	
 	
 	

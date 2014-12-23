@@ -200,9 +200,11 @@ WEIGHT TRACKER PAGE
 RECORD LOG WEIGHT PAGE
 
 -->
-<div data-role="page" id="recordlogPage">
+<div data-role="page" id="recordlogPage" >
   <div data-role="header">
   <a href="#WeightTracker"  data-role="button" data-icon="custom" data-iconpos="right">Back</a>  <h1 id="headertest">  Header</h1>
+  <a onclick="refreshPage();"  data-role="button" data-icon="refresh" data-iconpos="right">Refresh</a>
+
   </div>
   <div data-role="content">
     <ul id="listtitle" data-role="listview">
@@ -210,6 +212,7 @@ RECORD LOG WEIGHT PAGE
       <li ><a href="#">
       <script type="text/javascript">
        document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
+       
       </script>
 	  <tr>
       <th width="25%" scope="col" align="center">Peso Kg</th>
