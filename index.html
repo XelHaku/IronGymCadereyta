@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="Includes/style1.css">
 <link href="jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
 <script src="weight_tracker_javascript.js"></script>
+<script src="delete_progress_confirmation.js"></script>
 <script src="jquery-1.6.4.min.js" type="text/javascript"></script>
 <script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
 
@@ -87,7 +88,7 @@ WEIGHT TRACKER PAGE
         	<label for="spin4">Grasa Corporal %</label>
              <script type="text/javascript">
              
-            document.write('<a href=\"#bodyfatinstructions \"><img width=\"'+ $(window).width()*.04+'" height=\"auto\" src=\"Images/infoicon2.png\" width=\"129\" height=\"129\"></img></a>')
+            document.write('<a href=\"#bodyfatinstructions \"><img width=\"'+ $(window).width()*.05+'" height=\"auto\" src=\"Images/infoicon2.png\"></img></a>')
         	</script>
 <input onKeyPress="bodyfatview();" onChange="bodyfatview();" onFocus="bodyfatview();" maxlength="4"  type="number" data-mini="true" data-role="spinbox" name="spin4" id="bodyfat_text" data-options='{"type":"vertical"}' value="" max="50" min="0" />
 
@@ -103,10 +104,17 @@ WEIGHT TRACKER PAGE
 </div>
 
 
-<div  align="center" data-role="controlgroup" data-type="horizontal">
-<a  href="#" onClick="SaveDataToLocalStorage();" data-role="button"><span style="font-size:0.75em">Guardar</span></a>
+<div id="div_savebuttons" align="center" data-role="controlgroup" data-type="horizontal">
+
+<a   href="#"  onClick="SaveDataToLocalStorage();" data-role="button"><span  id="save_buttonlink" style="font-size:0.75em">Guardar</span></a>
 <a href="#recordlogPage" data-role="button"><span style="font-size:0.75em">Progreso</span></a>
-<a href="#" onClick="EliminateLocalStorage();" data-role="button"><span style="font-size:0.72em">Borrar Progreso</span></a>
+<a href="#" onClick="delete_confirmation();" data-role="button"><span style="font-size:0.72em">Borrar Progreso</span></a>
+
+
+<script type="text/javascript">
+             
+            document.write('<img width="'+ $(window).width()*.05+'" id="check_image" height="auto" src="Images/checkmark.png" ><img>')
+          </script>
 </div> <!--Buttons-->
 
 
@@ -211,7 +219,7 @@ RECORD LOG WEIGHT PAGE
     
       <li ><a href="#">
       <script type="text/javascript">
-       document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
+       document.write('<table style="width:100%" border="0" cellspacing="0" cellpadding="3">');
        
       </script>
 	  <tr>

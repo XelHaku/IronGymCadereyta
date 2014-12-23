@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{background-color:#036}
+body{background-color:#036 }
 
 div{
 color: #FFFFFF;
@@ -21,4 +21,12 @@ width:10em;
 th{
 	font-size:0.75em;
 	}
+
+#check_image {
+    visibility: hidden;
+}
 		
+.listelement{
+background-color:#AA0000;
+font-size:1.25em;
+}

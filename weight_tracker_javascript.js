@@ -8,14 +8,17 @@ h=h/100;
 var imc = w/(h*h); 
 imc=imc.toFixed(2);
 //alert(imc);
-document.getElementById("imc_text").innerHTML="IMC = " + imc;
+//document.getElementById("imc_text").innerHTML="IMC = " + imc;
+
+$( document ).ready(function() {
+    console.log( "Print IMC on screen" );
+
+    $('#imc_text').html(null);
+    $('#imc_text').append("IMC = " + imc);
+});
+   
 }
 
-function bodyfatview(){
-	var bf = document.getElementById("bodyfat_text").value;
-	document.getElementById("bodyfat_view").innerHTML= "GC% = " + bf; 
-	
-	}
 
 		
 ///////////////////	SAVE RECORDS FUNCTION		
@@ -93,28 +96,39 @@ weightRecord.year=Fecha.getFullYear();
 	  //create  Item for Storage and add first object		
 	
 }
-alert("Registros guardados = "+ wRecArray.length);
+
+
+
+
+$( document ).ready(function() {
+
+var savebutton = document.getElementById("save_buttonlink");
+var imagecheck = document.getElementById("check_image");
+
+
+$(imagecheck).css("visibility", "visible");
+setTimeout(function(){
+    $(imagecheck).css("visibility", "hidden");
+    
+}, 1500);
+
+
+
+
+
+//$(savebutton).innerHTML("<span style=\"font-size:0.75em\">Guardar</span>");
+
+});
+
+
+
  }
 
 
 
 
 	
-////////////	ELIMINATE ALL RECORDS FUNCTION
 
-function EliminateLocalStorage(){
- if ( "ProgressLog" in window.localStorage) {
-
-    localStorage.removeItem('ProgressLog');
-
-  alert("Todos los datos han sido eliminados");
-}
-	else{
-		alert("No hay registros guardados");
-			
-}
-	
-	}
 ///////////////////////ELIMINATE SINGLE RECORD	
 	function EraseSingleRecord(index){
 		
@@ -130,5 +144,4 @@ window.location.reload(true);
 
 	}
 	
-	
-	
+
