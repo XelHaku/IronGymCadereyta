@@ -207,7 +207,7 @@ RECORD LOG WEIGHT PAGE
   <div data-role="content">
     <ul data-role="listview">
     
-      <li><a href="#">
+      <li id="listtitle"><a href="#">
       <script type="text/javascript">
        document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
       </script>
@@ -220,88 +220,8 @@ RECORD LOG WEIGHT PAGE
       </table>
       </a></li>
 
-
-    <script type="text/javascript">
-	
-//     document.write('<li onClick="EraseSingleRecord(' + i + ');" ><a href="#">');
-	 // var a = JSON.parse(window.localStorage.getItem("ProgressLog"));
-	  
-	  var wRecArray = [];
-	  
-	  if ( "ProgressLog" in window.localStorage) {
-		  
-	  wRecArray = JSON.parse(window.localStorage.getItem("ProgressLog"));
-	
-	 for(i=0;i<wRecArray.length; i++)
-	 {
-		var name = "item" + String(i);
-		document.write('<li id="'+name+'"><a onClick="DeletePopupDialog('+i+');">');
-		document.write('<table width="'+ $(window).width() + 'px" border="0" cellspacing="0" cellpadding="3">');
-		 
-		//calculate IMC
-    var imctext = 10000*parseFloat(wRecArray[i].weight)/(parseFloat(wRecArray[i].height)*parseFloat(wRecArray[i].height));
-	imctext=imctext.toFixed(2);
-	document.write('<tr>');
-	
-	
-	//compare and set color for WEIGHT 
-	if(i==0){
-		
-		
-	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
-	
-	}
-	else{
-		var compare = wRecArray[i-1].weight-wRecArray[i].weight;
-		if(compare!=0){
-				if (compare >= 0)	
-				{
-	document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].weight +'</span></th>');
-						}else{
-	document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].weight +'</span></th>');				
-				}
-		}else{
-	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].weight +'</span></th>');
-		}
-		
-	}
-	
-	
-	//compare and set color for BODYFAT  
-	  if(i==0){
-	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
-	
-	}
-	else{
-		var compare = wRecArray[i-1].bodyfat-wRecArray[i].bodyfat;
-		if(compare!=0){
-				if (compare >= 0)	
-				{
-	document.write('<th width="25%" scope="col" align="center"><span style="color:#ADDA55">'+  wRecArray[i].bodyfat +'</span></th>');
-						}else{
-	document.write('<th width="25%" scope="col" align="center"><span style="color:#E51616">'+  wRecArray[i].bodyfat +'</span></th>');				
-				}
-		}else{
-	document.write('<th width="25%" scope="col" align="center"><span>'+  wRecArray[i].bodyfat +'</span></th>');
-		}
-	}
-	
-		//PRINT IMC
-	document.write('<th width="25%" scope="col" align="center">'+  imctext +'</th>');
-	
-	 
-	  //document.write('<th width="25%" scope="col" align="center">'+  wRecArray[i].bodyfat +'</th>');
-	document.write('<th width="25%" scope="col" align="center">'+ wRecArray[i].day+"/"+wRecArray[i].month+"/"+wRecArray[i].year +'     </th>');
-	
-	document.write('</tr>');  
-	document.write('</table>');
-	document.write('</li>');
-	
-	 }
-	  }else{alert("ERROR: No se pudo accesar a la memoria");}
-	 
-	  
-      </script>
+<script src="record_log_display.js"></script>
+ 
     
     </ul>
      
