@@ -126,21 +126,4 @@ function EliminateLocalStorage(){
 	}
 	
 	
-	function DeletePopupDialog(k){
-		
-		
-		var el = document.createElement("li");
-		var content = document.createTextNode(" It works = " + String(k));    
-			
-			el.appendChild(content); 
-			
-		var name = "item"+String(k);
-		alert(name);	
-		listitem= document.getElementById(name);
-	//document.write('<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;"></div>');
-  
-listitem.parentNode.insertBefore(el);  
-//document.listitem.appendChild(el);
-		
-			
-		}
+	
