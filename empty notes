@@ -17,9 +17,8 @@ $(function(){
 
 		name[i] = null;
 		newlistelement[i] = document.createElement( "li" );
-		newlink[i] = document.createElement("a");
 		newtable[i] = document.createElement("table");
-		
+		newlink[i] = document.createElement("a");
 
 
 
