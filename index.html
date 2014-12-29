@@ -72,7 +72,7 @@ WEIGHT TRACKER PAGE
 -->
 <div data-role="page" id="WeightTracker">
 	<div data-role="header">
-		<a href="#IronMain"  data-role="button" data-icon="custom" data-iconpos="right">Back</a> <h1>Weigth Tracker</h1>	</div>
+		<a href="#IronMain"  data-role="button" data-icon="custom" data-iconpos="right">Back</a> <h1>Weight Tracker</h1>	</div>
 
     <div data-role="content">
 <div>
@@ -216,20 +216,22 @@ RECORD LOG WEIGHT PAGE
   </div>
   <div data-role="content">
     
-      <script type="text/javascript">
-    document.write('<table id="bottomTitle" style="width:100%" border="0" cellspacing="0" cellpadding="3">');
+    
+      
+      <ul id="recordloglist" data-role="listview">
+          <script type="text/javascript">
+    document.write('<table id="bottomTitle" style="width:100%" border="0" cellspacing="0" cellpadding="0">');
        
       </script>
-	  <tr>
-      <th width="25%" scope="col" align="center">Peso Kg</th>
-      <th width="25%" scope="col" align="center">GC%</th>
-      <th width="25%" scope="col" align="center">IMC</th>
-      <th width="25%" scope="col" align="center">Fecha</th>
+    <tr>
+      <th class="tabletitle" width="25%" scope="col" align="center">Peso Kg</th>
+      <th class="tabletitle" width="25%" scope="col" align="center">GC%</th>
+      <th class="tabletitle" width="25%" scope="col" align="center">IMC</th>
+      <th class="tabletitle" width="25%" scope="col" align="center">Fecha</th>
       </tr>
       </table>
-      
 
-
+      </ul>
  
     <script src="record_log_display2.js"></script>  
     
@@ -492,8 +494,8 @@ OMNICRON INSTRUCTIONS
     <h1><a href="#WeightTracker" data-role="button" data-icon="back" data-iconpos="notext">Button</a>Instrucciones para usar Omrion</h1>
   </div>
   <div data-role="content">
-  <ol>
-  <li></li>
+  <ul>
+  <a href="http://www.omron-healthcare.com/data/catalog/3/3799/1/IM-HBF-511-E-04-10-2011_ES.pdf"><li><h3> Manua Completo en Español</h3></li></a>
   <li></li>
   <li></li>
   <li></li>
