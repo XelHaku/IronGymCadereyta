@@ -36,3 +36,22 @@ font-size: 1.25em;
 color: #000000;
 
 }
+/* Slider settings */
+#slider{
+
+overflow: hidden;
+}
+
+#slider .slides{
+display: block;
+
+margin: 0;
+padding: 0;
+}
+
+#slider .slide{
+float: left;
+list-style-type: none;
+
+
+}
