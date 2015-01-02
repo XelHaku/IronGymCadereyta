@@ -7,8 +7,7 @@ var h = parseFloat(document.getElementById("height_text").value);
 h=h/100;
 var imc = w/(h*h); 
 imc=imc.toFixed(2);
-//alert(imc);
-//document.getElementById("imc_text").innerHTML="IMC = " + imc;
+
 
 $( document ).ready(function() {
     console.log( "Print IMC on screen" );
@@ -78,7 +77,7 @@ switch(Fecha.getMonth()){
 weightRecord.day=Fecha.getDate();
 //Already done in the SWITCH : weightRecord.month=Fecha.getMonth();
 weightRecord.year=Fecha.getFullYear();
-//alert(weightRecord.weight + " " + weightRecord.height + " " +weightRecord.bodyfat );
+
 
  var wRecArray = [];
    if ( "ProgressLog" in window.localStorage) {

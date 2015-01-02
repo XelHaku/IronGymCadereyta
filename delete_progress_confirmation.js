@@ -1,5 +1,5 @@
 function delete_confirmation() {
-	alert("HERE");
+
 	
 $( document ).ready(function() {
 var newdiv = document.createElement("div")

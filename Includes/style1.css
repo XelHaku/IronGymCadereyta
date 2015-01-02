@@ -44,7 +44,7 @@ overflow: hidden;
 
 #slider .slides{
 display: block;
-
+background-color: #FFFFFF;
 margin: 0;
 padding: 0;
 }
@@ -52,6 +52,6 @@ padding: 0;
 #slider .slide{
 float: left;
 list-style-type: none;
-
+background-color: #000000;
 
 }

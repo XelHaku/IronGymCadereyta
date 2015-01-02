@@ -15,20 +15,20 @@ $('#slider .slide').css({ width: '720px', height: '400px',float:'left',list-styl
     var animationSpeed = 1000;
     var pause = 3000;
     var currentSlide = 1;
-    var winwidthBox= winwidth*5;
+    //var winwidthBox= winwidth*5;
     var maxH = winwidth*.2;
     //cache DOM elements
     var $slider = $('#slider');
     var $slideContainer = $('.slides', $slider);
     var $slides = $('.slide', $slider);
 
-var styles = {'maxWidth': winwidth,'height':maxH};
+var styles = {'maxWidth': winwidth};
     $slider.css(styles);
 
-    styles = {'maxWidth': 5*winwidth};
+    styles = {'maxWidth': 1*winwidth};
     $slideContainer.css(styles);
     
-    styles = {'maxWidth': winwidth,'height':maxH,'maxHeight':maxH};
+    styles = {'maxWidth': winwidth};
     $slides.css(styles);
 
     var interval;
