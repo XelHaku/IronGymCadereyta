@@ -24,7 +24,7 @@ $(function(){
 		$(newlistelement[i]).text(""+name[i]);
 
 		name[i] = null;
-		newlistelement[i] = document.createElement( "li" );
+		
 		
 		newlink[i] = document.createElement("a");
 	 	

@@ -26,11 +26,11 @@ th{
     visibility: hidden;
 }
 		
-.listelement{
+/*.listelement{
 background-color:#AA0000;
 font-size:1.25em;
 }
-
+*/
 .tabletitle{
 font-size: 1.25em;
 color: #000000;
@@ -53,5 +53,14 @@ padding: 0;
 float: left;
 list-style-type: none;
 background-color: #000000;
+
+}
+
+.topmaingrid{
+	width: 100%;
+}
+
+.gridblock{
+	width: 50%;
 
 }

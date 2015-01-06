@@ -11,25 +11,26 @@ $('#slider .slide').css({ width: '720px', height: '400px',float:'left',list-styl
 
     //settings for slider
     var winwidth = $(window).width();
+    var winheight =2*winwidth/3;
     //winwidth = '720px';
     var animationSpeed = 1000;
     var pause = 3000;
     var currentSlide = 1;
-    //var winwidthBox= winwidth*5;
-    var maxH = winwidth*.2;
+   
     //cache DOM elements
     var $slider = $('#slider');
     var $slideContainer = $('.slides', $slider);
     var $slides = $('.slide', $slider);
 
-var styles = {'maxWidth': winwidth};
+var styles = {'height':winheight,'width':winwidth,'maxWidth': winwidth};
     $slider.css(styles);
 
-    styles = {'maxWidth': 1*winwidth};
+    styles = {'height':winheight,'width':5*winwidth,'maxWidth': 5*winwidth};
     $slideContainer.css(styles);
     
-    styles = {'maxWidth': winwidth};
+    styles = {'height':winheight,'width':winwidth,'maxWidth': winwidth};
     $slides.css(styles);
+    //$('.slide').css(styles);
 
     var interval;
 
